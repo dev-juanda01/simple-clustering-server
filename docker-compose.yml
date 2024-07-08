@@ -1,0 +1,32 @@
+version: '3'
+services:
+  app:
+    container_name: node_app_test
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/app
+      - .:/usr/app/node_modules
+    deploy:
+      resources:
+        limits:
+          cpus: '1'  # Limita el uso a 1 procesador
+  app2:
+    container_name: node_app_test2
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "3500:3000"
+    volumes:
+      - .:/usr/app
+      - .:/usr/app/node_modules
+    deploy:
+      resources:
+        limits:
+          cpus: '2'  # Limita el uso a 2 procesadores
